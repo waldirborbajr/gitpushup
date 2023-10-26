@@ -37,6 +37,8 @@ fn gitpush() {
         eprintln!("Error: Failed to push changes to git repository.");
         exit(1)
     }
+
+    println!("Successfully added, committed, and pushed changes!");
 }
 
 fn name_generator() -> String {
