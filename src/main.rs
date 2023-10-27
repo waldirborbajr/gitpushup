@@ -26,10 +26,24 @@ fn gitpush() {
         exit(1)
     }
 
+    let branch = Command::new("git")
+        .arg("rev-parse")
+        .arg("--abbrev-ref")
+        .arg("HEAD")
+        .output()
+        .expect("Failed to execute git rev-parse command");
+
+    if !branch.status.success() {
+        eprintln!("Error: Failed to get current branch name.");
+        exit(1)
+    }
+
+    let branch_name = String::from_utf8_lossy(&branch.stdout).trim().to_string();
+
     let push_command = Command::new("git")
         .arg("push")
         .arg("origin")
-        .arg("main")
+        .arg(branch_name)
         .output()
         .expect("Failed to execute git push command");
 
