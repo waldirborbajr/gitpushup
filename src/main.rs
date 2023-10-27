@@ -47,7 +47,7 @@ fn name_generator() -> String {
     let now = now.as_secs();
 
     let mut generator = Generator::default();
-    generator.next().unwrap() + now.to_string().as_str()
+    generator.next().unwrap() + " " + &now.to_string().as_str()
 }
 
 fn main() {
