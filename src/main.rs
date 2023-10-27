@@ -42,11 +42,12 @@ fn gitpush() {
 }
 
 fn name_generator() -> String {
-    // let now = std::time::SystemTime::now();
-    // let now = now.duration_since(std::time::UNIX_EPOCH).unwrap();
-    // let now = now.as_secs();
+    let now = std::time::SystemTime::now();
+    let now = now.duration_since(std::time::UNIX_EPOCH).unwrap();
+    let now = now.as_secs();
+
     let mut generator = Generator::default();
-    generator.next().unwrap()
+    generator.next().unwrap() + now.to_string().as_str()
 }
 
 fn main() {
