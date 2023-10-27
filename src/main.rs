@@ -2,6 +2,12 @@ use names::Generator;
 use std::process::exit;
 use std::process::Command;
 
+#[derive(Default)]
+struct Arguments {
+    branch: String,
+    message: String,
+}
+
 fn gitpush() {
     let add_command = Command::new("git")
         .arg("add")
@@ -50,14 +56,6 @@ fn name_generator() -> String {
     generator.next().unwrap() + " " + &now.to_string().as_str()
 }
 
-fn get_parameters() -> Vec<String> {
-    let args: Vec<String> = std::env::args().collect();
-    args[1..].to_vec()
-}
-
 fn main() {
-    let args = get_parameters();
-    println!("{:?}", args);
-
     gitpush();
 }
