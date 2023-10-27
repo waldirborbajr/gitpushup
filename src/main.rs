@@ -40,8 +40,6 @@ fn gitpush() {
 
     let branch_name = String::from_utf8_lossy(&branch.stdout).trim().to_string();
 
-    println!("Current branch name: {}", branch_name);
-
     let push_command = Command::new("git")
         .arg("push")
         .arg("origin")
