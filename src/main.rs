@@ -50,6 +50,14 @@ fn name_generator() -> String {
     generator.next().unwrap() + " " + &now.to_string().as_str()
 }
 
+fn get_parameters() -> Vec<String> {
+    let args: Vec<String> = std::env::args().collect();
+    args[1..].to_vec()
+}
+
 fn main() {
+    let args = get_parameters();
+    println!("{:?}", args);
+
     gitpush();
 }
