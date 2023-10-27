@@ -2,12 +2,6 @@ use names::Generator;
 use std::process::exit;
 use std::process::Command;
 
-#[derive(Default)]
-struct Arguments {
-    branch: String,
-    message: String,
-}
-
 fn gitpush() {
     let add_command = Command::new("git")
         .arg("add")
