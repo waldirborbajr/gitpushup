@@ -3,6 +3,18 @@ use std::process::exit;
 use std::process::Command;
 
 fn gitpush() {
+    let has_commit = Command::new("git")
+        .arg("diff")
+        .arg("--quiet")
+        .arg("--exit-code")
+        .status()
+        .expect("Faild to execute git diff command");
+
+    if has_commit.success() {
+        println!("Nothing to commit");
+        exit(0)
+    }
+
     let add_command = Command::new("git")
         .arg("add")
         .arg("-A")
