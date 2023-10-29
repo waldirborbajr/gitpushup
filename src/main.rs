@@ -5,13 +5,12 @@ use std::process::Command;
 fn gitpush() {
     let has_commit = Command::new("git")
         .arg("diff")
-        // .arg("--exit-code")
-        .output()
+        .arg("--quiet")
+        .arg("--exit-code")
+        .status()
         .expect("Faild to execute git diff command");
 
-    // println!("{:?}", has_commit);
-
-    if !has_commit.status.success() {
+    if has_commit.success() {
         println!("Nothing to commit");
         exit(0)
     }
