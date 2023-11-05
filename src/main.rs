@@ -78,8 +78,12 @@ fn name_generator() -> String {
     format!("{}/{}", now, generator_output)
 }
 
-fn main() {
+fn show_version() {
     let version = env!("CARGO_PKG_VERSION");
     println!("gitpush v{}", version);
+}
+
+fn main() {
+    show_version();
     gitpush();
 }
