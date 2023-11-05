@@ -1,4 +1,5 @@
 use names::Generator;
+use std::fs::Permissions;
 use std::process::exit;
 use std::process::Command;
 
@@ -78,9 +79,9 @@ fn name_generator() -> String {
     format!("{}/{}", now, generator_output)
 }
 
-fn show_version() {
+fn show_version() -> String {
     let version = env!("CARGO_PKG_VERSION");
-    println!("gitpush v{}", version);
+    format!("gitpush v{}", version)
 }
 
 fn main() {
