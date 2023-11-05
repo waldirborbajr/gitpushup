@@ -1,5 +1,5 @@
 use names::Generator;
-use std::fs::Permissions;
+
 use std::process::exit;
 use std::process::Command;
 
