@@ -128,3 +128,17 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: './target/tarpaulin/lcov.info'
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+      - name: Check documentation
+        env:
+          RUSTDOCFLAGS: -D warnings
+        run: cargo doc --no-deps --document-private-items --workspace
