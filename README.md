@@ -1,6 +1,9 @@
 
 # GitPush - DevOps Automation Command Line Tool
 
+[![CI](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml)
+
+
 ## Overview
 
 A simple command line tool written in Rust. It automates the process of adding all files, committing changes, and pushing them to the remote repository. This tool is designed to streamline the Git workflow, making it faster and more convenient.
