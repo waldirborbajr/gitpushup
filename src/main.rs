@@ -4,6 +4,8 @@ use std::process::exit;
 use std::process::Command;
 
 fn gitpush() {
+    // TODO: use git commit -pm "message"
+
     let has_commit = Command::new("git")
         .arg("diff")
         .arg("--quiet")
