@@ -130,6 +130,7 @@ jobs:
           path-to-lcov: './target/tarpaulin/lcov.info'
 
   docs:
+    name: Rust Documentation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
