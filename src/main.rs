@@ -1,4 +1,5 @@
 mod version;
+
 use version::show_version;
 
 mod git;
