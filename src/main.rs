@@ -6,6 +6,14 @@ use std::process::Command;
 fn gitpush() {
     // TODO: use git commit -pm "message"
 
+
+    let must_commit = Command::new("git")
+        .arg("diff")
+        .arg("--quiet")
+        .arg("--cached")
+        .status(
+        .expect("Faild to execute git diff command");
+
     let has_commit = Command::new("git")
         .arg("diff")
         .arg("--quiet")
