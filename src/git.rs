@@ -1,8 +1,8 @@
-use names::Generator;
 use std::process::exit;
 use std::process::Command;
 
-pub fn gitpush() {
+#[warn(dead_code)]
+pub fn gitpush(message: &str) {
     // TODO: use git commit -pm "message"
 
     let has_commit = Command::new("git")
@@ -31,7 +31,7 @@ pub fn gitpush() {
     let commit_command = Command::new("git")
         .arg("commit")
         .arg("-m")
-        .arg(name_generator())
+        .arg(message)
         .output()
         .expect("Failed to execute git commit command");
 
@@ -67,15 +67,4 @@ pub fn gitpush() {
     }
 
     println!("Successfully added, committed, and pushed changes!");
-}
-
-fn name_generator() -> String {
-    let now = std::time::SystemTime::now();
-    let now = now.duration_since(std::time::UNIX_EPOCH).unwrap();
-    let now = now.as_secs();
-
-    let mut generator = Generator::default();
-    let generator_output = generator.next().unwrap().to_string();
-
-    format!("{}/{}", now, generator_output)
 }
