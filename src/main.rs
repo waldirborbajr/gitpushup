@@ -19,6 +19,7 @@ fn main() {
         rand_message().to_string()
     };
 
+    // Display the version
     println!("{}", show_version());
 
     gitpush(&message);
