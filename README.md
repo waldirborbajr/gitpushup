@@ -27,6 +27,14 @@ This command will execute the tool and perform the following operations:
 
 ## Installation
 
+### Pre-Built Binary
+
+Each release comes with pre-built binaries of several platforms. Grab it from [Github Releases](https://github.com/waldirborbajr/gitpush/releases).
+
+### From source
+
+Make sure you have Rust installed, then:
+
 To build and install this, you'll need Rust and Cargo installed on your system. If you haven't already, you can install Rust by following the instructions on the official [Rust website](https://www.rust-lang.org/tools/install).
 
 Once Rust is installed, you can proceed with the following steps:
