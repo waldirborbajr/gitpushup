@@ -19,8 +19,9 @@ fn main() {
         rand_message().to_string()
     };
 
-    // Display the version
+    // Display the version from Cargo
     println!("{}", show_version());
 
+    // add + commit + push
     gitpush(&message);
 }
