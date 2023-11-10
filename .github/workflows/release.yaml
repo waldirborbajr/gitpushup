@@ -38,8 +38,6 @@ jobs:
     permissions: write-all
     runs-on: ${{ matrix.job.os }}
     needs: release
-    # env:
-    #   gitpush_DEFAULT_SERVER_URL: https://gitpush.com:5554
     strategy:
       fail-fast: false
       matrix:
@@ -49,6 +47,7 @@ jobs:
           - { os: ubuntu-latest, target: x86_64-unknown-linux-musl, use-cross: true }
           - { os: ubuntu-latest, target: x86_64-unknown-linux-gnu }
           - { os: macos-latest, target: x86_64-apple-darwin }
+          - { os: macos-latest, target: aarch64-apple-darwin }
     steps:
       - uses: actions/checkout@v2
 
@@ -64,12 +63,10 @@ jobs:
         with:
           use-cross: ${{ matrix.job.use-cross }}
           command: build
-          args: --release --locked --package gitpush --target=${{ matrix.job.target }}
+          args: --release --locked --target=${{ matrix.job.target }}
 
       - name: Strip debug information
         run: strip target/${{ matrix.job.target }}/release/gitpush
-
-      - run: mv target/${{ matrix.job.target }}/release/gitpush target/${{ matrix.job.target }}/release/gitpush
 
       - name: Archive
         run: tar czf gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz -C target/${{ matrix.job.target }}/release gitpush
@@ -89,8 +86,6 @@ jobs:
     permissions: write-all
     runs-on: windows-latest
     needs: release
-    env:
-      gitpush_DEFAULT_SERVER_URL: https://gitpush.com:5554
     strategy:
       fail-fast: false
       matrix:
@@ -111,9 +106,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --release --locked --package gitpush --target=${{ matrix.job.target }}
-
-      - run: mv target/${{ matrix.job.target }}/release/gitpush.exe target/${{ matrix.job.target }}/release/gitpush.exe
+          args: --release --locked --target=${{ matrix.job.target }}
 
       - name: Archive
         run: 7z -y a gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip target/${{ matrix.job.target }}/release/gitpush.exe
