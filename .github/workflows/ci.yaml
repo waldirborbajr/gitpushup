@@ -140,7 +140,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: './target/gitpush/lcov.info'
+          path-to-lcov: './target/tarpaulin/lcov.info'
 
   docs:
     name: Rust Documentation
