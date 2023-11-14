@@ -1,10 +1,12 @@
-name: CI
+name: Rust CI
 
 on:
   push:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   unit_tests:
@@ -94,6 +96,17 @@ jobs:
       - name: Check formatting
         run: cargo fmt --all --check
 
+  rustaudit:
+    name: Rust Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install cargo-audit
+        run: cargo install cargo-audit
+      - name: Auditting
+        run: cargo audit
+
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
@@ -105,7 +118,7 @@ jobs:
         with:
           components: clippy
       - name: Clippy Check
-        run: cargo clippy -- -D warnings
+        run: cargo clippy --verbose -- -D warnings
 
   coverage:
     name: Code coverage
@@ -127,7 +140,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: './target/tarpaulin/lcov.info'
+          path-to-lcov: './target/gitpush/lcov.info'
 
   docs:
     name: Rust Documentation
