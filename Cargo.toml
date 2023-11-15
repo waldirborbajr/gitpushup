@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["Waldir Borba Junior <wborbajr@gmail.com>"]
 description = "GitPush in rust!"
 repository = "https://github.com/waldirborbajr/gitpush"
+homepage = "https://github.com/waldirborbajr/gitpush"
 readme  = "README.md"
 keywords = ["gitpush", "devops", "git"]
 license = "MIT"
