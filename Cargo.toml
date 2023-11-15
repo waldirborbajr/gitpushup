@@ -3,6 +3,11 @@ name = "gitpush"
 version = "0.1.9"
 edition = "2021"
 authors = ["Waldir Borba Junior <wborbajr@gmail.com>"]
+description = "GitPush in rust!"
+repository = "https://github.com/waldirborbajr/gitpush"
+readme  = "README.md"
+keywords = ["gitpush", "devops", "git"]
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -14,4 +19,5 @@ lto = true
 codegen-units = 1
 panic = "abort"
 strip = true
+debug = false
 opt-level = 'z' # Optimize for size
