@@ -15,6 +15,9 @@ license = "MIT"
 [dependencies]
 names = "0.14.0"
 
+[build]
+rustflags = ["-z", "threads=8"]
+
 [profile.release]
 lto = true
 codegen-units = 1
