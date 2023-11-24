@@ -10,7 +10,9 @@ readme  = "README.md"
 keywords = ["gitpush", "devops", "git"]
 license = "MIT"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "gitpush"
+path = "src/main.rs"
 
 [dependencies]
 names = "0.14.0"
