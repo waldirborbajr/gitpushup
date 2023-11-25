@@ -7,6 +7,11 @@
 [![Security audit](https://github.com/waldirborbajr/gitpush/actions/workflows/audit.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/audit.yaml)
 [![Release to crates.io](https://github.com/waldirborbajr/gitpush/actions/workflows/crates.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/crates.yaml)
 
+<p>
+  <img src="./assets/gitpush-logo.png" width="120", height="120"/>
+  <br>
+</p>
+
 ## Overview
 
 A simple command line tool written in Rust programming language. It automates the process of adding all files, committing changes, and pushing them to the remote repository. This tool is designed to streamline the Git workflow, making it faster and more convenient.
