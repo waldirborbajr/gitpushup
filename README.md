@@ -1,14 +1,14 @@
 
 # GitPush - DevOps Automation Command Line Tool
 
-[![Lint](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml) 
-[![CI](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml) 
-[![Release](https://github.com/waldirborbajr/gitpush/actions/workflows/release.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/release.yaml) 
+[![Lint](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml)
+[![CI](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml)
+[![Release](https://github.com/waldirborbajr/gitpush/actions/workflows/release.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/release.yaml)
 [![Security audit](https://github.com/waldirborbajr/gitpush/actions/workflows/audit.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/audit.yaml)
 [![Release to crates.io](https://github.com/waldirborbajr/gitpush/actions/workflows/crates.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/crates.yaml)
 
 <p>
-  <img src="./assets/gitpush-logo.png" width="120", height="120"/>
+  <img src="./.assets/gitpush-logo.png" width="120", height="120"/>
   <br>
 </p>
 
