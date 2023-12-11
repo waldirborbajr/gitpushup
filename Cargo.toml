@@ -7,7 +7,7 @@ description = "GitPush in rust!"
 repository = "https://github.com/waldirborbajr/gitpush"
 homepage = "https://github.com/waldirborbajr/gitpush"
 readme  = "README.md"
-keywords = ["gitpush", "devops", "git"]
+keywords = ["gitpush", "devops", "git", "cli", "terminal"]
 license = "MIT"
 
 [[bin]]
@@ -33,3 +33,15 @@ opt-level = 3
 # 3: all optimizations
 # "s": optimize for binary size
 # "z": optimize for binary size, but also turn off loop vectorization.
+
+[profile.release-lto]
+inherits = "release"
+opt-level = 3
+debug = "none"
+strip = "symbols"
+debug-assertions = false
+overflow-checks = false
+lto = "fat"
+panic = "abort"
+incremental = false
+codegen-units = 1
