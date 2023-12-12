@@ -29,5 +29,5 @@ fn main() {
   println!("{}", show_version().green());
 
   // add + commit + push
-  gitpush(&message);
+  gitpush(&message)
 }
