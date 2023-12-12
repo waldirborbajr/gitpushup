@@ -10,6 +10,9 @@ clean:
 cache:
 	cargo-cache --remove-dir all
 
+test:
+	cargo test 
+		
 install:
 	cargo build --release
 	cargo install --path .
