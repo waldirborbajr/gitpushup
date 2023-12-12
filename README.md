@@ -1,10 +1,10 @@
-# GitPush - DevOps Automation Command Line Tool
+# GitPushUp - DevOps Automation Command Line Tool
 
-[![Lint](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml)
-[![CI](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/ci.yaml)
-[![Release](https://github.com/waldirborbajr/gitpush/actions/workflows/release.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/release.yaml)
-[![Security audit](https://github.com/waldirborbajr/gitpush/actions/workflows/audit.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/audit.yaml)
-[![Release to crates.io](https://github.com/waldirborbajr/gitpush/actions/workflows/crates.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/crates.yaml)
+[![Lint](https://github.com/waldirborbajr/gitpushup/actions/workflows/linter.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/linter.yaml)
+[![CI](https://github.com/waldirborbajr/gitpushup/actions/workflows/ci.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/ci.yaml)
+[![Release](https://github.com/waldirborbajr/gitpushup/actions/workflows/release.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/release.yaml)
+[![Security audit](https://github.com/waldirborbajr/gitpushup/actions/workflows/audit.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/audit.yaml)
+[![Release to crates.io](https://github.com/waldirborbajr/gitpushup/actions/workflows/crates.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/crates.yaml)
 
 <p>
   <img src="./.assets/gitpush-logo.png" width="120", height="120"/>
@@ -17,14 +17,14 @@ A simple command line tool written in Rust programming language. It automates th
 
 ## Usage
 
-To use GitPush, follow these steps:
+To use GitPushUp, follow these steps:
 
 1. Navigate to the root directory of your Git repository in the terminal.
 
 2. Run the following command:
 
 ```bash
-gitpush
+gitpushup
 ```
 
 This command will execute the tool and perform the following operations:
@@ -50,13 +50,13 @@ Once Rust is installed, you can proceed with the following steps:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/waldirborbajr/gitpush.git
+git clone https://github.com/waldirborbajr/gitpushup.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd gitpush
+cd gitpushup
 ```
 
 3. Build the project using Cargo:
@@ -74,14 +74,14 @@ cargo install --path .
 ## Dependencies
 
 - `names`: This dependency is used to generate random commit messages. You can find more information about this crate [here](https://crates.io/crates/names).
-
 - `std::os`: This module is part of the Rust standard library and is used for interacting with the operating system. It is used in this project for handling process exit codes.
+- `Colored`: This dependency is used to coloring terminal.
 
-## Contributing to GitPush
+## Contributing to GitPushUp
 
-If you are interested in contributing to GitPush, we would love to have your help! You can start by checking out the [ open issues ](https://github.com/waldirborbajr/gitpush/issues) on our GitHub repository to see if there is anything you can help with. You can also suggest new features or improvements by opening a new issue.
+If you are interested in contributing to GitPush, we would love to have your help! You can start by checking out the [ open issues ](https://github.com/waldirborbajr/gitpushup/issues) on our GitHub repository to see if there is anything you can help with. You can also suggest new features or improvements by opening a new issue.
 
-To contribute code to Gitpush, you will need to fork the repository and create a new branch for your changes. Once you have made your changes, you can submit a pull request for them to be reviewed and merged into the main codebase.
+To contribute code to GitpushUp, you will need to fork the repository and create a new branch for your changes. Once you have made your changes, you can submit a pull request for them to be reviewed and merged into the main codebase.
 
 ## License
 
