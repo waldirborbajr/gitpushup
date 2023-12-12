@@ -1,17 +1,17 @@
 [package]
-name = "gitpush"
+name = "gitpushup"
 version = "0.1.9"
 edition = "2021"
 authors = ["Waldir Borba Junior <wborbajr@gmail.com>"]
-description = "GitPush in rust!"
-repository = "https://github.com/waldirborbajr/gitpush"
-homepage = "https://github.com/waldirborbajr/gitpush"
+description = "GitPushUp in rust!"
+repository = "https://github.com/waldirborbajr/gitpushup"
+homepage = "https://github.com/waldirborbajr/gitpushup"
 readme  = "README.md"
-keywords = ["gitpush", "devops", "git", "cli", "terminal"]
+keywords = ["gitpush", "gitpushup", "devops", "git", "cli", "terminal"]
 license = "MIT"
 
 [[bin]]
-name = "gitpush"
+name = "gitpushup"
 path = "src/main.rs"
 
 [dependencies]
