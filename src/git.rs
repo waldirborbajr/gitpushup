@@ -56,7 +56,7 @@ pub fn gitpush(message: &str) {
     .expect("Failed to execute git push command");
 
   if !push_command.status.success() {
-    eprintln!("Error: Failed to push changes to git repository.");
+    eprintln!("{}", "Error: Failed to push changes to git repository.".red().bold());
     exit(1)
   }
 
