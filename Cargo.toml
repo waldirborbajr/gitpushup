@@ -7,7 +7,7 @@ description = "GitPushUp in rust!"
 repository = "https://github.com/waldirborbajr/gitpushup"
 homepage = "https://github.com/waldirborbajr/gitpushup"
 readme  = "README.md"
-keywords = ["gitpush", "gitpushup", "devops", "git", "cli", "terminal"]
+keywords = ["gitpushup", "devops", "git", "cli", "terminal"]
 license = "MIT"
 
 [[bin]]
