@@ -88,7 +88,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gitpush"
+name = "gitpushup"
 version = "0.1.9"
 dependencies = [
  "colorful",
