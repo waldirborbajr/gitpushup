@@ -68,10 +68,10 @@ jobs:
           args: --release --locked --target=${{ matrix.job.target }}
 
       - name: Strip debug information
-        run: strip target/${{ matrix.job.target }}/release/gitpush
+        run: strip target/${{ matrix.job.target }}/release/gitpushup
 
       - name: Archive
-        run: tar czf gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz -C target/${{ matrix.job.target }}/release gitpush
+        run: tar czf gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz -C target/${{ matrix.job.target }}/release gitpushup
 
       - name: Upload release
         uses: actions/upload-release-asset@v1
@@ -79,8 +79,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.release_upload_url }}
-          asset_path: gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
-          asset_name: gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
+          asset_path: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
+          asset_name: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
           asset_content_type: application/octet-stream
 
   build-win:
@@ -111,7 +111,7 @@ jobs:
           args: --release --locked --target=${{ matrix.job.target }}
 
       - name: Archive
-        run: 7z -y a gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip target/${{ matrix.job.target }}/release/gitpush.exe
+        run: 7z -y a gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip target/${{ matrix.job.target }}/release/gitpushup.exe
 
       - name: Upload release
         uses: actions/upload-release-asset@v1
@@ -119,6 +119,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.release_upload_url }}
-          asset_path: gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
-          asset_name: gitpush-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
+          asset_path: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
+          asset_name: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
           asset_content_type: application/zip
