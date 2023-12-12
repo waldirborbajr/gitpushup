@@ -1,4 +1,3 @@
-
 # GitPush - DevOps Automation Command Line Tool
 
 [![Lint](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml/badge.svg)](https://github.com/waldirborbajr/gitpush/actions/workflows/linter.yaml)

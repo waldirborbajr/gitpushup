@@ -15,6 +15,7 @@ name = "gitpush"
 path = "src/main.rs"
 
 [dependencies]
+colorful = "0.2.2"
 names = "0.14.0"
 
 [build]
