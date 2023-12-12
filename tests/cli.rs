@@ -1,7 +1,7 @@
 use gitpushup::find_git_command;
 
 #[test]
-fn test_find_gitpushup_command() {
+fn test_find_git_command() {
   let git_string = "\
 fatal: The current branch fix/author has no upstream branch.
 To push the current branch and set the remote as upstream, use
@@ -14,7 +14,7 @@ To push the current branch and set the remote as upstream, use
 }
 
 #[test]
-fn failed_find_gitpushup_command() {
+fn failed_find_git_command() {
   let git_string = "\
 fatal: The current branch fix/author has no upstream branch.
 To push the current branch and set the remote as upstream, use
