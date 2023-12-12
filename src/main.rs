@@ -26,7 +26,7 @@ fn main() {
   // };
 
   // Display the version from Cargo
-  println!("{}", show_version().green());
+  println!("{}", show_version().green().bold());
 
   // add + commit + push
   gitpush(&message)

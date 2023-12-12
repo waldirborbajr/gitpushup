@@ -1,4 +1,6 @@
 use std::process::exit;
+
+use colorful::Colorful;
 use std::process::Command;
 
 #[warn(dead_code)]
@@ -58,5 +60,5 @@ pub fn gitpush(message: &str) {
     exit(1)
   }
 
-  println!("Successfully added, committed, and pushed changes!")
+  println!("{}", "Successfully added, committed, and pushed changes!".yellow())
 }
