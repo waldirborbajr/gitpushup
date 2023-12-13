@@ -20,7 +20,8 @@ pub fn gitpush(message: &str) {
     false => (),
   }
 
-  let add_command = Command::new("git").arg("add").arg("-A").output().expect("Failed to execute git add command");
+  let add_command =
+    Command::new("git").arg("add").arg("-A").output().expect("Failed to execute git add command");
 
   match !add_command.status.success() {
     true => {
@@ -30,8 +31,12 @@ pub fn gitpush(message: &str) {
     false => (),
   }
 
-  let commit_command =
-    Command::new("git").arg("commit").arg("-m").arg(message).output().expect("Failed to execute git commit command");
+  let commit_command = Command::new("git")
+    .arg("commit")
+    .arg("-m")
+    .arg(message)
+    .output()
+    .expect("Failed to execute git commit command");
 
   match !commit_command.status.success() {
     true => {

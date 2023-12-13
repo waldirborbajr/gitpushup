@@ -1,13 +1,12 @@
 use std::process::Command;
 
 // Validate if git is installed. If not, return an error message.
-
 pub fn find_git_command() -> Result<(), String> {
   let gitcommand = Command::new("git").arg("--version").output().expect("Error");
 
   match gitcommand.status.success() {
     true => Ok(()),
-    false => Err(format!("Error: 'git' command exited with non-zero status.")),
+    false => Err("Error: 'git' command exited with non-zero status.".to_string()),
   }
 }
 
