@@ -1,124 +1,78 @@
 name: Release
+
 on:
   push:
     tags:
       - "v*"
-  # push:
-  #   tags:
-  #     - 'v[0-9]+.*'
-env:
-  RUST_BACKTRACE: full
+
+permissions:
+  packages: write
+  contents: write
 
 jobs:
   release:
-    name: Create release
-    permissions: write-all
     runs-on: ubuntu-latest
-    outputs:
-      release_upload_url: ${{ steps.create_release.outputs.upload_url }}
-      release_version: ${{ steps.get_version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Get release version
-        id: get_version
-        uses: battila7/get-version-action@v2
-
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
+      - run: gh release create ${{ github.ref_name }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.get_version.outputs.version }}
-          release_name: Release ${{ steps.get_version.outputs.version }}
-          draft: true
-          prerelease: false
-
-  build-unix:
-    name: Build ${{ matrix.job.os }} (${{ matrix.job.target }})
-    permissions: write-all
-    runs-on: ${{ matrix.job.os }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  assets:
+    name: ${{ matrix.build }}
     needs: release
+    runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
-        job:
-          - { os: ubuntu-latest, target: i686-unknown-linux-gnu, use-cross: true }
-          - { os: ubuntu-latest, target: i686-unknown-linux-musl, use-cross: true }
-          - { os: ubuntu-latest, target: x86_64-unknown-linux-musl, use-cross: true }
-          - { os: ubuntu-latest, target: x86_64-unknown-linux-gnu }
-          - { os: macos-latest, target: x86_64-apple-darwin }
-          - { os: macos-latest, target: aarch64-apple-darwin }
+        include:
+          - build: linux-x86
+            os: ubuntu-latest
+            target: i686-unknown-linux-gnu
+            command: cross
+          - build: windows-x86
+            os: ubuntu-latest
+            target: i686-pc-windows-gnu
+            command: cross
+          - build: linux-x64
+            os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            command: cross
+          - build: macos-x64
+            os: macos-latest
+            target: x86_64-apple-darwin
+            command: cargo
+          - build: windows-x64
+            os: ubuntu-latest
+            target: x86_64-pc-windows-gnu
+            command: cross
+          - build: macos-aarch64
+            os: macos-latest
+            target: aarch64-apple-darwin
+            command: cargo
+          - build: linux-aarach64
+            os: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            command: cross
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions-rs/toolchain@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          profile: minimal
           toolchain: stable
-          override: true
-          target: ${{ matrix.job.target }}
-
-      - name: Build
-        uses: actions-rs/cargo@v1
-        with:
-          use-cross: ${{ matrix.job.use-cross }}
-          command: build
-          args: --release --locked --target=${{ matrix.job.target }}
-
-      - name: Strip debug information
-        run: strip target/${{ matrix.job.target }}/release/gitpushup
-
-      - name: Archive
-        run: tar czf gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz -C target/${{ matrix.job.target }}/release gitpushup
-
-      - name: Upload release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.release_upload_url }}
-          asset_path: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
-          asset_name: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
-          asset_content_type: application/octet-stream
-
-  build-win:
-    name: Build Windows (${{ matrix.job.target }})
-    permissions: write-all
-    runs-on: windows-latest
-    needs: release
-    strategy:
-      fail-fast: false
-      matrix:
-        job:
-          - { os: windows-latest, target: i686-pc-windows-msvc }
-          - { os: windows-latest, target: x86_64-pc-windows-gnu }
-          - { os: windows-latest, target: x86_64-pc-windows-msvc }
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-          target: ${{ matrix.job.target }}
-
-      - uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release --locked --target=${{ matrix.job.target }}
-
-      - name: Archive
-        run: 7z -y a gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip target/${{ matrix.job.target }}/release/gitpushup.exe
-
-      - name: Upload release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.release_upload_url }}
-          asset_path: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
-          asset_name: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
-          asset_content_type: application/zip
+          target: ${{ matrix.target }}
+      - run: cargo install cross --git https://github.com/cross-rs/cross
+      - run: ${{ matrix.command }} build --release --target ${{ matrix.target }}
+      - name: Create archive
+        id: archive
+        run: |
+          DIRECTORY="gitpushup-${{ github.ref_name }}-${{ matrix.build }}"
+          if [[ "${{ matrix.target }}" =~ "-pc-windows-" ]]; then
+            SUFFIX=".exe"
+          else
+            SUFFIX=""
+          fi
+          mkdir "$DIRECTORY"
+          cp CHANGELOG.md LICENSE.md README.md "target/${{ matrix.target }}/release/gitpushup$SUFFIX" "$DIRECTORY"
+          7z a "$DIRECTORY.zip" "$DIRECTORY"
+          echo "path=$DIRECTORY.zip" >> $GITHUB_OUTPUT
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.ref_name }} ${{ steps.archive.outputs.path }}
