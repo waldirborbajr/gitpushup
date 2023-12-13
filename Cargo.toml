@@ -17,6 +17,7 @@ path = "src/main.rs"
 [dependencies]
 colorful = "0.2.2"
 names = "0.14.0"
+regex = "1.10.2"
 
 [build]
 rustflags = ["-z", "threads=8"]
