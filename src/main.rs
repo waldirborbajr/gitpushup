@@ -20,7 +20,7 @@ fn main() {
 
   let mut param = std::env::args().skip(1);
 
-  let message = match param.next() {
+  let message: String = match param.next() {
     Some(content) if !content.is_empty() => content.to_string(),
     _ => rand_message().to_string(),
   };

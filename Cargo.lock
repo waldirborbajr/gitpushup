@@ -98,7 +98,7 @@ dependencies = [
 
 [[package]]
 name = "gitpushup"
-version = "0.1.11"
+version = "0.1.12"
 dependencies = [
  "colorful",
  "names",
