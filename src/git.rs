@@ -12,24 +12,33 @@ pub fn gitpush(message: &str) {
     .status()
     .expect("Faild to execute git diff command");
 
-  if has_commit.success() {
-    println!("Nothing to commit");
-    std::process::exit(0);
+  match has_commit.success() {
+    true => {
+      println!("Nothing to commit");
+      std::process::exit(0);
+    }
+    false => (),
   }
 
   let add_command = Command::new("git").arg("add").arg("-A").output().expect("Failed to execute git add command");
 
-  if !add_command.status.success() {
-    eprintln!("Error: Failed to add files to git repository.");
-    std::process::exit(1);
+  match !add_command.status.success() {
+    true => {
+      eprintln!("Error: Failed to add files to git repository.");
+      std::process::exit(1);
+    }
+    false => (),
   }
 
   let commit_command =
     Command::new("git").arg("commit").arg("-m").arg(message).output().expect("Failed to execute git commit command");
 
-  if !commit_command.status.success() {
-    eprintln!("Error: Failed to commit changes to git repository.");
-    std::process::exit(1);
+  match !commit_command.status.success() {
+    true => {
+      eprintln!("Error: Failed to commit changes to git repository.");
+      std::process::exit(1);
+    }
+    false => (),
   }
 
   let branch = Command::new("git")
@@ -39,8 +48,12 @@ pub fn gitpush(message: &str) {
     .output()
     .expect("Failed to execute git rev-parse command");
 
-  if !branch.status.success() {
-    eprintln!("Error: Failed to get current branch name.");
+  match !branch.status.success() {
+    true => {
+      eprintln!("Error: Failed to get current branch name.");
+      std::process::exit(1);
+    }
+    false => (),
   }
 
   let branch_name = String::from_utf8_lossy(&branch.stdout).trim().to_string();
@@ -52,9 +65,12 @@ pub fn gitpush(message: &str) {
     .output()
     .expect("Failed to execute git push command");
 
-  if !push_command.status.success() {
-    eprintln!("{}", "Error: Failed to push changes to git repository.".red().bold());
-    std::process::exit(1);
+  match !push_command.status.success() {
+    true => {
+      eprintln!("{}", "Error: Failed to push changes to git repository.".red().bold());
+      std::process::exit(1);
+    }
+    false => (),
   }
 
   println!("{}", "Successfully added, committed, and pushed changes!".yellow())
