@@ -1,13 +1,13 @@
 [package]
 name = "gitpushup"
-version = "0.1.11"
+version = "0.1.12"
 edition = "2021"
 authors = ["Waldir Borba Junior <wborbajr@gmail.com>"]
 description = "GitPushUp in rust!"
 repository = "https://github.com/waldirborbajr/gitpushup"
 homepage = "https://github.com/waldirborbajr/gitpushup"
-readme  = "README.md"
-keywords = ["gitpush", "gitpushup", "devops", "git", "cli", "terminal"]
+readme = "README.md"
+keywords = ["gitpushup", "git", "cli", "terminal"]
 license = "MIT"
 
 [[bin]]
@@ -17,6 +17,7 @@ path = "src/main.rs"
 [dependencies]
 colorful = "0.2.2"
 names = "0.14.0"
+regex = "1.10.2"
 
 [build]
 rustflags = ["-z", "threads=8"]
