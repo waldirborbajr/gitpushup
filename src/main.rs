@@ -2,23 +2,20 @@ mod git;
 mod randmessage;
 mod version;
 
-use std::process::Command;
-
 use colorful::Colorful;
 use git::gitpush;
-// use gitpushup::find_git_command;
+use gitpushup::find_git_command;
 use randmessage::rand_message;
 use version::show_version;
 
 fn main() {
-  let mut gitcommand = Command::new("gita"); //.output().expect("Failed to execute git command.");
-
-  let status = gitcommand.status(); // String::from_utf8_lossy(&output.stderr);
-
-  // let cmd_to_run = find_git_command(&output_string).unwrap_or("");
+  let status = find_git_command();
   match status {
-    Ok(_) => (), // eprintln!("{} {}", "git".red().bold(), "not found. Please install before using".red()),
-    Err(_) => eprintln!("{} {}", "git".red().bold(), "not found. Please install before using".red()),
+    Ok(_) => (),
+    Err(_) => {
+      eprintln!("{} {}", "git".red().bold(), "not found. Please install before using".red());
+      std::process::exit(1)
+    }
   }
 
   let mut param = std::env::args().skip(1);

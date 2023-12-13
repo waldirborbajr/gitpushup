@@ -1,5 +1,3 @@
-use std::process::exit;
-
 use colorful::Colorful;
 use std::process::Command;
 
@@ -16,14 +14,14 @@ pub fn gitpush(message: &str) {
 
   if has_commit.success() {
     println!("Nothing to commit");
-    exit(0)
+    std::process::exit(0);
   }
 
   let add_command = Command::new("git").arg("add").arg("-A").output().expect("Failed to execute git add command");
 
   if !add_command.status.success() {
     eprintln!("Error: Failed to add files to git repository.");
-    exit(1)
+    std::process::exit(1);
   }
 
   let commit_command =
@@ -31,7 +29,7 @@ pub fn gitpush(message: &str) {
 
   if !commit_command.status.success() {
     eprintln!("Error: Failed to commit changes to git repository.");
-    exit(1)
+    std::process::exit(1);
   }
 
   let branch = Command::new("git")
@@ -43,7 +41,6 @@ pub fn gitpush(message: &str) {
 
   if !branch.status.success() {
     eprintln!("Error: Failed to get current branch name.");
-    exit(1)
   }
 
   let branch_name = String::from_utf8_lossy(&branch.stdout).trim().to_string();
@@ -57,7 +54,7 @@ pub fn gitpush(message: &str) {
 
   if !push_command.status.success() {
     eprintln!("{}", "Error: Failed to push changes to git repository.".red().bold());
-    exit(1)
+    std::process::exit(1);
   }
 
   println!("{}", "Successfully added, committed, and pushed changes!".yellow())
