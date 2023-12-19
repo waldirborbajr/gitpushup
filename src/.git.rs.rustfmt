@@ -1,4 +1,5 @@
-use {colorful::Colorful, std::process::Command};
+use colorful::Colorful;
+use std::process::Command;
 
 #[warn(dead_code)]
 pub fn gitpush(message: &str) {
