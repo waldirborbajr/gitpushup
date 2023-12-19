@@ -1,6 +1,5 @@
 use {colorful::Colorful, std::process::Command};
 
-#[warn(dead_code)]
 pub fn gitpush(message: &str) {
   // TODO: use git commit -pm "message"
 
