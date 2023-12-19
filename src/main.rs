@@ -2,11 +2,10 @@ mod git;
 mod randmessage;
 mod version;
 
-use colorful::Colorful;
-use git::gitpush;
-use gitpushup::find_git_command;
-use randmessage::rand_message;
-use version::show_version;
+use {
+  colorful::Colorful, git::gitpush, gitpushup::find_git_command, randmessage::rand_message,
+  version::show_version,
+};
 
 fn main() {
   let status = find_git_command();
