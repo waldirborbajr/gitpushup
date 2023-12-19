@@ -5,6 +5,7 @@
 [![Release](https://github.com/waldirborbajr/gitpushup/actions/workflows/release.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/release.yaml)
 [![Security audit](https://github.com/waldirborbajr/gitpushup/actions/workflows/audit.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/audit.yaml)
 [![Release to crates.io](https://github.com/waldirborbajr/gitpushup/actions/workflows/crates.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/crates.yaml)
+[![Typos](https://github.com/waldirborbajr/gitpushup/actions/workflows/typos.yaml/badge.svg)](https://github.com/waldirborbajr/gitpushup/actions/workflows/typos.yaml)
 
 <p>
   <img src="./.assets/gitpush-logo.png" width="120", height="120"/>
