@@ -10,7 +10,7 @@ pub fn gitpush(message: &str) {
     .arg("--quiet")
     .arg("--exit-code")
     .status()
-    .expect("Faild to execute git diff command");
+    .expect("Failed to execute git diff command");
 
   match has_commit.success() {
     true => {
