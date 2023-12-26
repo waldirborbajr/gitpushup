@@ -1,4 +1,6 @@
-use {colorful::Colorful, std::process::Command};
+use std::process::Command;
+
+use colorful::Colorful;
 
 pub fn gitpush(message: &str) {
   // TODO: use git commit -pm "message"
