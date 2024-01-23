@@ -31,5 +31,5 @@ fn main() {
   // add + commit + push
   gitpush(&message);
 
-  std::process::exit(0)
+  // std::process::exit(0)
 }
