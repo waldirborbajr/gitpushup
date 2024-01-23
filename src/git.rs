@@ -67,12 +67,12 @@ pub fn gitpush(message: &str) {
 
   match !push_command.status.success() {
     true => {
-      eprintln!("{}", "Error: Failed to push changes to git repository.".red().bold());
+      eprintln!("{}", "🛑 Error: Failed to push changes to git repository.".red().bold());
       std::process::exit(1);
     }
     false => (),
   }
 
-  println!("{}", ":flag_check: Successfully added, committed, and pushed changes!".yellow());
+  println!("{}", "🚀 Successfully added, committed, and pushed changes!".yellow());
   std::process::exit(0)
 }
