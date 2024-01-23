@@ -72,6 +72,12 @@ cargo build --release
 cargo install --path .
 ```
 
+### `crates.io`
+
+Also available at  
+
+https://crates.io/crates/gitpushup
+
 ### `Dependencies`
 
 - `names`: This dependency is used to generate random commit messages. You can find more information about this crate [here](https://crates.io/crates/names).
