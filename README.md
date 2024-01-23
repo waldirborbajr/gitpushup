@@ -16,7 +16,7 @@
 
 A simple command line tool written in Rust programming language. It automates the process of adding all files, committing changes, and pushing them to the remote repository. This tool is designed to streamline the Git workflow, making it faster and more convenient.
 
-## Usage
+### `Usage`
 
 To use GitPushUp, follow these steps:
 
@@ -34,7 +34,7 @@ This command will execute the tool and perform the following operations:
 2. Commit all changes with a randomly generated commit message.
 3. Push the changes to the remote repository (origin main branch).
 
-## Installation
+### `Installation`
 
 ### Pre-Built Binary
 
@@ -72,18 +72,18 @@ cargo build --release
 cargo install --path .
 ```
 
-## Dependencies
+### `Dependencies`
 
 - `names`: This dependency is used to generate random commit messages. You can find more information about this crate [here](https://crates.io/crates/names).
 - `std::os`: This module is part of the Rust standard library and is used for interacting with the operating system. It is used in this project for handling process exit codes.
 - `Colored`: This dependency is used to coloring terminal.
 
-## Contributing to GitPushUp
+### `Contributing to GitPushUp`
 
 If you are interested in contributing to GitPush, we would love to have your help! You can start by checking out the [ open issues ](https://github.com/waldirborbajr/gitpushup/issues) on our GitHub repository to see if there is anything you can help with. You can also suggest new features or improvements by opening a new issue.
 
 To contribute code to GitpushUp, you will need to fork the repository and create a new branch for your changes. Once you have made your changes, you can submit a pull request for them to be reviewed and merged into the main codebase.
 
-## License
+### `License`
 
 This project is released under the MIT License - see the [LICENSE](LICENSE) file for details.
