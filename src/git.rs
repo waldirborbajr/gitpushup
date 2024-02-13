@@ -78,7 +78,6 @@ pub fn gitpush(message: &str) {
 		false => (),
 	}
 
-	// println!("{}", "🚀 Successfully added, committed, and pushed changes!".yellow());
-	format!("{}", "🚀 Successfully added, committed, and pushed changes!".yellow());
+	println!("{}", "🚀 Successfully added, committed, and pushed changes!".yellow());
 	std::process::exit(0)
 }
