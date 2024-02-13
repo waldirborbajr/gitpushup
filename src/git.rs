@@ -25,7 +25,7 @@ pub fn gitpush(message: &str) {
 
 	match !add_command.status.success() {
 		true => {
-			eprintln!("Error: Failed to add files to git repository.");
+			eprintln!("{}", "🛑 Error: Failed to add files git repository.".red().bold());
 			std::process::exit(1);
 		}
 		false => (),
@@ -40,7 +40,7 @@ pub fn gitpush(message: &str) {
 
 	match !commit_command.status.success() {
 		true => {
-			eprintln!("Error: Failed to commit changes to git repository.");
+			eprintln!("{}", "🛑 Error: Failed to commit changes to git repository.".red().bold());
 			std::process::exit(1);
 		}
 		false => (),
