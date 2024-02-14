@@ -23,7 +23,7 @@ mod tests {
 	#[test]
 	fn test_git_exists() {
 		// Mock successful git execution
-		Command::new("git").arg("--version").output().expect("Failed to mock git command");
+		Command::new("gitA").arg("--version").output().expect("Failed to mock git command");
 
 		assert!(find_git_command().is_ok());
 	}

@@ -14,7 +14,6 @@ fn main() -> Result<()> {
 	match status {
 		Ok(_) => {}
 		Err(e) => {
-			// eprintln!("{} {}", "git".red().bold(), "not found. Please install before using".red());
 			eprintln!("{:?}", e);
 			std::process::exit(1)
 		}
