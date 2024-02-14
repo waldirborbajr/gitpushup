@@ -1,30 +1,41 @@
 use std::process::Command;
 
-// Validate if git is installed. If not, return an error message.
-pub fn find_git_command() -> Result<(), String> {
-  let gitcommand = Command::new("git").arg("--version").output().expect("Error");
+use anyhow::{bail, Context};
 
-  match gitcommand.status.success() {
-    true => Ok(()),
-    false => Err("Error: 'git' command exited with non-zero status.".to_string()),
-  }
+// Validate if git is installed. If not, return an error message.
+pub fn find_git_command() -> Result<(), anyhow::Error> {
+	let output =
+		Command::new("git").arg("--version").output().context("Failed to execute git command")?;
+
+	match output.status.code() {
+		Some(0) => Ok(()),
+		Some(code) => bail!("git command not found (exit code: {})", code),
+		None => bail!("Failed to determine git command exit code"),
+	}
+	// 	false => Err("🛑 Error: 'git' command not found.".to_string()),
+	// }
 }
 
 #[cfg(test)]
 mod tests {
-  use super::*;
+	use super::*;
 
-  #[test]
-  fn find_git_command_success() {
-    let result = find_git_command();
-    assert!(result.is_ok());
-  }
+	#[test]
+	fn test_git_exists() {
+		// Mock successful git execution
+		Command::new("git").arg("--version").output().expect("Failed to mock git command");
 
-  #[test]
-  #[ignore]
-  fn find_git_command_error() {
-    let result = Command::new("nonexistentcommand").arg("--version").output();
-    assert_eq!(find_git_command(), Err("Error: 'git' command not found.".to_string()));
-    assert!(result.is_err());
-  }
+		assert!(find_git_command().is_ok());
+	}
+
+	#[test]
+	fn test_git_not_found() {
+		// Mock unsuccessful git execution
+		Command::new("invalid_command")
+			.arg("--version")
+			.output()
+			.expect("Failed to mock invalid command");
+
+		assert!(find_git_command().is_err());
+	}
 }
