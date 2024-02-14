@@ -1,19 +1,13 @@
 use std::process::Command;
 
-use anyhow::{bail, Context};
-
 // Validate if git is installed. If not, return an error message.
-pub fn find_git_command() -> Result<(), anyhow::Error> {
-	let output =
-		Command::new("git").arg("--version").output().context("Failed to execute git command")?;
+pub fn find_git_command() -> Result<(), String> {
+	let gitcommand = Command::new("git").arg("--version").output().expect("Error");
 
-	match output.status.code() {
-		Some(0) => Ok(()),
-		Some(code) => bail!("git command not found (exit code: {})", code),
-		None => bail!("Failed to determine git command exit code"),
+	match gitcommand.status.success() {
+		true => Ok(()),
+		false => Err("Error: 'git' command exited with non-zero status.".to_string()),
 	}
-	// 	false => Err("🛑 Error: 'git' command not found.".to_string()),
-	// }
 }
 
 #[cfg(test)]

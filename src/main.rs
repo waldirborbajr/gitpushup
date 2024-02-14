@@ -12,9 +12,9 @@ use version::show_version;
 fn main() -> Result<()> {
 	let status = find_git_command();
 	match status {
-		Ok(_) => {}
-		Err(e) => {
-			eprintln!("{:?}", e);
+		Ok(_) => (),
+		Err(_) => {
+			eprintln!("{} {}", "🛑 git".red().bold(), "not found. Please install before using".red());
 			std::process::exit(1)
 		}
 	}
