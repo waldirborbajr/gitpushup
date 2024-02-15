@@ -16,24 +16,7 @@ pub fn validate_git_command() -> Result<()> {
 				}
 			},
 		)
-	// let output = Command::new("git").arg("--version").output()?;
-	//
-	// if output.status.success() {
-	// 	Ok(())
-	// } else {
-	// 	Err(Error::msg("Git command not found"))
-	// }
 }
-
-// #[cfg(test)]
-// mod tests {
-// 	use super::*;
-//
-// 	#[test]
-// 	fn test_validate_git_command() {
-// 		assert!(validate_git_command().is_ok());
-// 	}
-// }
 
 #[cfg(test)]
 mod tests {
