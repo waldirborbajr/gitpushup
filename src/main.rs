@@ -5,16 +5,15 @@ mod version;
 use anyhow::Result;
 use colorful::Colorful;
 use git::gitpush;
-use gitpushup::find_git_command;
+use gitpushup::validate_git_command;
 use randmessage::rand_message;
 use version::show_version;
 
 fn main() -> Result<()> {
-	let status = find_git_command();
-	match status {
-		Ok(_) => (),
+	match validate_git_command() {
+		Ok(_) => {}
 		Err(_) => {
-			eprintln!("{} {}", "🛑 git".red().bold(), "not found. Please install before using".red());
+			eprintln!("{}", "🛑 Error: Git command not found".red().bold());
 			std::process::exit(1)
 		}
 	}
@@ -31,8 +30,6 @@ fn main() -> Result<()> {
 
 	// add + commit + push
 	gitpush(&message);
-
-	// std::process::exit(0)
 
 	Ok(())
 }
