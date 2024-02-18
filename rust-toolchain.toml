@@ -18,5 +18,5 @@ profile = "minimal"
 # I believe rust is on a 6 week release cycle and nushell is on a 4 week release cycle.
 # So, every two nushell releases, this version number should be bumped by one.
 # channel = "nightly"
-channel = "1.75"
+channel = "stable"
 components = ["rustfmt", "clippy"]
