@@ -1,8 +1,8 @@
 build:
-	cargo watch -q -c -w src/ -x "build -q"
+	cargo watch -c -w src/ -x "build --color=always"
 
 run:
-	cargo watch -q -c -w src/ -x "run -q"
+	cargo watch -c -w src/ -x "run --color=always"
 
 clean:
 	cargo clean
@@ -13,6 +13,9 @@ cache:
 test:
 	cargo test 
 		
-install:
+release:
 	cargo build --release
 	cargo install --path .
+
+layout:
+	zellij --layout rust-layout.kdl
