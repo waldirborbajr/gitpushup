@@ -16,3 +16,6 @@ test:
 install:
 	cargo build --release
 	cargo install --path .
+
+layout:
+	zellij --layout rust-layout.kdl
