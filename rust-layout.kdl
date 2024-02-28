@@ -12,15 +12,11 @@ layout {
     pane split_direction="vertical" {
       pane command="nvim" close_on_exit=true 
       pane split_direction="horizontal" {
-        pane command="cargo" {
-          args "check"
+        pane command="make" {
+          args "build"
         }
-        pane command="cargo" {
-          args "run"
-        }
-        pane command="cargo" {
-          args "test"
-        }
+        pane
+        pane
       }
     }
     pane size=1 borderless=true {

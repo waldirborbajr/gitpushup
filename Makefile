@@ -1,8 +1,8 @@
 build:
-	cargo watch -q -c -w src/ -x "build -q"
+	cargo watch -c -w src/ -x "build "
 
 run:
-	cargo watch -q -c -w src/ -x "run -q"
+	cargo watch -c -w src/ -x "run "
 
 clean:
 	cargo clean
