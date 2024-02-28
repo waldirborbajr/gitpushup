@@ -1,8 +1,8 @@
 build:
-	cargo watch -c -w src/ -x "build "
+	cargo watch -c -w src/ -x "build --color=always"
 
 run:
-	cargo watch -c -w src/ -x "run "
+	cargo watch -c -w src/ -x "run --color=always"
 
 clean:
 	cargo clean
@@ -13,7 +13,7 @@ cache:
 test:
 	cargo test 
 		
-install:
+release:
 	cargo build --release
 	cargo install --path .
 
