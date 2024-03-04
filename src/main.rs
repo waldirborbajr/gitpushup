@@ -25,8 +25,6 @@ fn main() -> Result<()> {
         _ => rand_message().to_string(),
     };
 
-    eprintln!("PARAM = {}", message);
-
     // Display the version from Cargo
     println!("{}", show_version().green().bold());
 
