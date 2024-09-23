@@ -16,7 +16,7 @@ path = "src/main.rs"
 
 [dependencies]
 anyhow = "1.0.79"
-colorful = "0.2.2"
+colorful = "0.3.2"
 names = "0.14.0"
 regex = "1.10.3"
 
