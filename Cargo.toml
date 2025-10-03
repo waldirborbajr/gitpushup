@@ -1,6 +1,6 @@
 [package]
 name = "gitpushup"
-version = "0.1.15"
+version = "0.1.16/2026"
 edition = "2021"
 authors = ["Waldir Borba Junior <wborbajr@gmail.com>"]
 description = "GitPushUp in rust!"
