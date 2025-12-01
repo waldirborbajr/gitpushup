@@ -20,7 +20,7 @@ jobs:
       release_upload_url: ${{ steps.create_release.outputs.upload_url }}
       release_version: ${{ steps.get_version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Get release version
         id: get_version
@@ -65,7 +65,7 @@ jobs:
           - { os: macos-latest, target: x86_64-apple-darwin }
           - { os: macos-latest, target: aarch64-apple-darwin }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -110,7 +110,7 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-gnu }
           - { os: windows-latest, target: x86_64-pc-windows-msvc }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: actions-rs/toolchain@v1
         with:
