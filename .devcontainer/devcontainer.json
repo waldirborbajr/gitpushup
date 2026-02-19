@@ -1,0 +1,17 @@
+{
+  "name": "gitpushup-devcontainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "rust-lang.rust-analyzer",
+    "serayuzgur.crates",
+    "vadimcn.vscode-lldb",
+    "tamasfe.even-better-toml"
+  ],
+  "postCreateCommand": "rustup component add clippy rustfmt && cargo install cargo-edit",
+  "remoteUser": "vscode"
+}
