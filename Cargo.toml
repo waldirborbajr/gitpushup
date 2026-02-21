@@ -28,18 +28,15 @@ rustflags = ["-z", "threads=8"]
 panic = "abort"
 
 [profile.release]
-lto = true
+opt-level = "z"        # smallest (try "s" if you want a bit faster, slightly bigger)
+lto = "fat"            # usually reduces size (slower compile)
 codegen-units = 1
 panic = "abort"
-strip = true
+strip = "symbols"
 debug = false
-opt-level = 3
-# 0: no optimizations
-# 1: basic optimizations
-# 2: some optimizations
-# 3: all optimizations
-# "s": optimize for binary size
-# "z": optimize for binary size, but also turn off loop vectorization.
+debug-assertions = false
+overflow-checks = false
+incremental = false
 
 [profile.release-lto]
 inherits = "release"
