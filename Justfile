@@ -5,7 +5,7 @@
 # │   just               → show this help message                 │
 # └───────────────────────────────────────────────────────────────┘
 
-set shell := ["bash", "-euo", "pipefail"]
+# set shell := ["bash", "-euo", "pipefail"]
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 set dotenv-load := true
 
