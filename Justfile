@@ -14,11 +14,15 @@ default: help
 
 # Show this help message
 help:
-    @just --list --unsorted
-    @echo ""
-    @echo "Development aliases:"
-    @echo "  just b       → alias for build"
-    @echo "  just r       → alias for run"
+    @echo "Available commands:"
+    @echo "  just               → show this help"
+    @echo "  just build / b     → watch + build"
+    @echo "  just run / r       → watch + run"
+    @echo "  just test          → cargo test"
+    @echo "  just clean         → cargo clean"
+    @echo "  just cache         → clear cargo cache"
+    @echo "  just release       → build + install --release"
+    @echo "  just layout        → zellij rust layout"
     @echo ""
 
 # ─── Build & Development ─────────────────────────────────────────
