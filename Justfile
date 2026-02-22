@@ -25,10 +25,6 @@ help:
     @echo "  just layout        → zellij rust layout"
     @echo ""
 
-# Prints help with recipes in source order
-help:
-    @just --list --unsorted
-
 # ─── Build & Development ─────────────────────────────────────────
 
 # Watch + build (continuous)
