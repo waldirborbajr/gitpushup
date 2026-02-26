@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
+  release:
+    types: [created]
 
 env:
   RUST_BACKTRACE: full
@@ -20,14 +22,20 @@ jobs:
       release_upload_url: ${{ steps.create_release.outputs.upload_url }}
       release_version: ${{ steps.get_version.outputs.version }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - name: Get release version
         id: get_version
-        uses: battila7/get-version-action@v2
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Create release
+      - name: Create release (only on push tag)
         id: create_release
+        if: github.event_name == 'push'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -36,6 +44,25 @@ jobs:
           release_name: Release ${{ steps.get_version.outputs.version }}
           draft: true
           prerelease: false
+
+      - name: Get upload URL (on release event)
+        id: get_upload_url
+        if: github.event_name == 'release'
+        run: echo "upload_url=${{ github.event.release.upload_url }}" >> $GITHUB_OUTPUT
+
+      - name: Set upload URL output
+        id: set_upload_url
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "upload_url=${{ github.event.release.upload_url }}" >> $GITHUB_OUTPUT
+          else
+            echo "upload_url=${{ steps.create_release.outputs.upload_url }}" >> $GITHUB_OUTPUT
+          fi
+
+    # Override the job output to use the combined step
+    outputs:
+      release_upload_url: ${{ steps.set_upload_url.outputs.upload_url }}
+      release_version: ${{ steps.get_version.outputs.version }}
 
   build-unix:
     name: Build ${{ matrix.job.os }} (${{ matrix.job.target }})
@@ -65,7 +92,7 @@ jobs:
           - { os: macos-latest, target: x86_64-apple-darwin }
           - { os: macos-latest, target: aarch64-apple-darwin }
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -110,7 +137,7 @@ jobs:
           - { os: windows-latest, target: x86_64-pc-windows-gnu }
           - { os: windows-latest, target: x86_64-pc-windows-msvc }
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - uses: actions-rs/toolchain@v1
         with:
