@@ -1,6 +1,5 @@
-
-use std::process::Command;
 use colorful::Colorful;
+use std::process::Command;
 
 /// Adds, commits, and pushes changes to the current git branch.
 /// Returns Ok(()) on success, or an error message on failure.

@@ -1,14 +1,14 @@
 mod git;
+mod pushupzen;
 mod randmessage;
 mod version;
-mod pushupzen;
 
 use anyhow::Result;
 use colorful::Colorful;
 use git::gitpush;
 use gitpushup::validate_git_command;
-use randmessage::rand_message;
 use pushupzen::prompt_commit_message;
+use randmessage::rand_message;
 use version::show_version;
 
 /// Command-line argument parser using clap
@@ -28,6 +28,7 @@ fn main() -> Result<()> {
 
     if let Err(e) = validate_git_command() {
         eprintln!("{}", format!("🛑 Error: Git command not found: {e}").red().bold());
+        eprintln!("Please install Git and try again.");
         std::process::exit(1);
     }
 
@@ -46,7 +47,7 @@ fn main() -> Result<()> {
             } else {
                 rand_message()
             }
-        }
+        },
     };
 
     // Display the version from Cargo

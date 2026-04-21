@@ -5,14 +5,11 @@ use std::process::Command;
 pub fn prompt_commit_message() -> String {
     // Show staged changes before prompting
     println!("\n--- Staged Changes (git diff --cached) ---");
-    let diff_output = Command::new("git")
-        .arg("diff")
-        .arg("--cached")
-        .output();
+    let diff_output = Command::new("git").arg("diff").arg("--cached").output();
     match diff_output {
         Ok(output) if !output.stdout.is_empty() => {
             println!("{}", String::from_utf8_lossy(&output.stdout));
-        }
+        },
         Ok(_) => println!("(No staged changes)"),
         Err(e) => println!("Failed to show staged changes: {e}"),
     }
