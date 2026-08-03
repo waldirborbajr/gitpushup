@@ -47,7 +47,7 @@ jobs:
           targets: ${{ matrix.job.target }}
       - name: Install cross
         if: matrix.job.use-cross
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@v2.85.5
         with:
           tool: cross
       - name: Unit tests
@@ -126,7 +126,7 @@ jobs:
       - name: Install stable toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Install cargo-tarpaulin
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@v2.85.5
         with:
           tool: cargo-tarpaulin
       - name: Run cargo-tarpaulin
