@@ -1,3 +1,6 @@
+[build]
+rustflags = ["-z", "threads=8"]
+
 [target.aarch64-unknown-linux-gnu]
 linker = "aarch64-linux-gnu-gcc"
 

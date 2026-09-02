@@ -1,6 +1,6 @@
 [package]
 name = "gitpushup"
-version = "0.1.16"
+version = "0.2.0"
 edition = "2021"
 authors = ["Waldir Borba Junior <wborbajr@gmail.com>"]
 description = "GitPushUp in rust!"
@@ -15,21 +15,18 @@ name = "gitpushup"
 path = "src/main.rs"
 
 [dependencies]
-anyhow = "1.0.89"
-clap = { version = "4.6.0", features = ["derive"] }
+anyhow = "1.0.104"
+clap = { version = "4.6.6", features = ["derive"] }
 colorful = "0.3.2"
 names = "0.14.0"
-regex = "1.12.3"
-
-[build]
-rustflags = ["-z", "threads=8"]
+regex = "1.13.1"
 
 [profile.dev]
 panic = "abort"
 
 [profile.release]
-opt-level = "z"        # smallest (try "s" if you want a bit faster, slightly bigger)
-lto = "fat"            # usually reduces size (slower compile)
+opt-level = "z"          # smallest (try "s" if you want a bit faster, slightly bigger)
+lto = "fat"              # usually reduces size (slower compile)
 codegen-units = 1
 panic = "abort"
 strip = "symbols"
