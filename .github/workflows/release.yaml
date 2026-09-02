@@ -69,20 +69,26 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions-rs/toolchain@v1
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
-          toolchain: stable
-          override: true
-          target: ${{ matrix.job.target }}
+          targets: ${{ matrix.job.target }}
+
+      - name: Install cross
+        if: matrix.job.use-cross
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cross
 
       - name: Build
-        uses: actions-rs/cargo@v1
-        with:
-          use-cross: ${{ matrix.job.use-cross }}
-          command: build
-          args: --release --locked --target=${{ matrix.job.target }}
-
+        shell: bash
+        run: |
+          if [[ "${{ matrix.job.use-cross }}" == "true" ]]; then
+            cross build --release --locked --target ${{ matrix.job.target }}
+          else
+            cargo build --release --locked --target ${{ matrix.job.target }}
+          fi
+          
       - name: Strip debug information
         run: strip target/${{ matrix.job.target }}/release/gitpushup
 
@@ -99,43 +105,4 @@ jobs:
           asset_name: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.tar.gz
           asset_content_type: application/octet-stream
 
-  build-win:
-    name: Build Windows (${{ matrix.job.target }})
-    permissions: write-all
-    runs-on: windows-latest
-    needs: release
-    strategy:
-      fail-fast: false
-      matrix:
-        job:
-          - { os: windows-latest, target: i686-pc-windows-msvc }
-          - { os: windows-latest, target: x86_64-pc-windows-gnu }
-          - { os: windows-latest, target: x86_64-pc-windows-msvc }
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-          target: ${{ matrix.job.target }}
-
-      - uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release --locked --target=${{ matrix.job.target }}
-
-      - name: Archive
-        run: 7z -y a gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip target/${{ matrix.job.target }}/release/gitpushup.exe
-
-      - name: Upload release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.release_upload_url }}
-          asset_path: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
-          asset_name: gitpushup-${{ needs.release.outputs.release_version }}-${{ matrix.job.target }}.exe.zip
-          asset_content_type: application/zip
-
+ 
