@@ -13,6 +13,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         valgrind \
         lldb \
         git-lfs \
+        gh \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     # Create convenient symlinks for fd and bat (Debian names them differently)
